@@ -1,0 +1,11 @@
+.env
+service_account.json
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# Runtime data — managed by the bot at runtime, not stored in git.
+# Defaults live in data_defaults/ and are copied on first start.
+data/
