@@ -131,6 +131,28 @@ def remove_user(user_id: int) -> bool:
     return True
 
 
+class LastAdminError(Exception):
+    """Raised when an action would leave the bot with zero admins."""
+
+
+def demote_admin(user_id: int) -> bool:
+    """Move an admin to the regular-users list. Returns True if action took effect.
+
+    Raises LastAdminError if this would leave the bot with no admins.
+    """
+    wl = load_whitelist()
+    admin = next((a for a in wl["admins"] if a["id"] == user_id), None)
+    if admin is None:
+        return False
+    if len(wl["admins"]) <= 1:
+        raise LastAdminError()
+    wl["admins"] = [a for a in wl["admins"] if a["id"] != user_id]
+    wl["users"] = [u for u in wl["users"] if u["id"] != user_id]
+    wl["users"].append(admin)
+    _write(config.WHITELIST_FILE, wl)
+    return True
+
+
 # ---------- Trucks ----------
 
 def load_trucks() -> list[dict]:

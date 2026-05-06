@@ -51,6 +51,26 @@ async def addadmin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 @_admin_only
+async def removeadmin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if len(context.args) != 1:
+        await update.message.reply_text(i18n.USAGE_REMOVEADMIN)
+        return
+    try:
+        uid = int(context.args[0])
+    except ValueError:
+        await update.message.reply_text(i18n.USAGE_REMOVEADMIN)
+        return
+    try:
+        if not storage.demote_admin(uid):
+            await update.message.reply_text(i18n.ADMIN_NOT_FOUND.format(user_id=uid))
+            return
+    except storage.LastAdminError:
+        await update.message.reply_text(i18n.LAST_ADMIN_ERROR)
+        return
+    await update.message.reply_text(i18n.ADMIN_DEMOTED.format(user_id=uid))
+
+
+@_admin_only
 async def removeuser(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if len(context.args) != 1:
         await update.message.reply_text(i18n.USAGE_REMOVEUSER)
@@ -175,6 +195,7 @@ async def sheet_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 def register(app) -> None:
     app.add_handler(CommandHandler("adduser", adduser))
     app.add_handler(CommandHandler("addadmin", addadmin))
+    app.add_handler(CommandHandler("removeadmin", removeadmin))
     app.add_handler(CommandHandler("removeuser", removeuser))
     app.add_handler(CommandHandler("listusers", listusers))
     app.add_handler(CommandHandler("addtruck", addtruck))
