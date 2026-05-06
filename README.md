@@ -126,7 +126,9 @@ Open Telegram → find your bot → send `/start`. You'll be asked to tap **📞
 
 From there, manage everyone else via bot commands:
 - `/adduser <id> <name>` — add a regular employee
-- `/addadmin <id> <name>` — add another admin
+- `/addadmin <id> <name>` — add another admin (new person)
+- `/addadmin <id>` — promote an existing user to admin (keeps name + phone)
+- `/removeadmin <id>` — demote an admin back to regular user
 - `/listusers` — show the whitelist
 
 ## User flow (Khmer)
@@ -160,18 +162,34 @@ By default, every entry uses today's date. To backdate a session (e.g., catching
 
 ## Admin commands
 
+### People
+
 | Command | Purpose |
 |---|---|
 | `/adduser <id> <name>` | Add employee to whitelist |
-| `/addadmin <id> <name>` | Promote to admin |
-| `/removeuser <id>` | Remove from whitelist |
+| `/removeuser <id>` | Fully remove a person from the whitelist (works on admins too) |
+| `/addadmin <id> <name>` | Add a brand-new admin (person not yet in the whitelist) |
+| `/addadmin <id>` | **Promote** an existing whitelisted user to admin — keeps their name and phone |
+| `/removeadmin <id>` | **Demote** an admin to regular user. Refuses if it would leave zero admins |
 | `/listusers` | Show all users + admins |
+| `/setphone <id> <phone>` | Manually set/override a user's phone number |
+
+### Vehicles
+
+| Command | Purpose |
+|---|---|
 | `/addtruck <plate>` | Add truck to picklist |
 | `/removetruck <plate>` | Remove truck |
+| `/listtrucks` | Show all trucks with their numbers and plates |
 | `/addvehicletype <name>` | Add vehicle type (e.g. `ឡានដឹក`) |
 | `/removevehicletype <name>` | Remove vehicle type |
+| `/listvehicletypes` | Show all vehicle types |
+
+### Sheet
+
+| Command | Purpose |
+|---|---|
 | `/setbeginning <ម៉ាស៊ូត\|ប្រេងសំាង> <amount>` | Set opening balance for current month |
-| `/setphone <id> <phone>` | Manually set/override a user's phone number |
 | `/sheet` | Get the Google Sheet URL |
 
 ## Sheet behavior
