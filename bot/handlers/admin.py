@@ -41,13 +41,32 @@ async def adduser(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 @_admin_only
 async def addadmin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    parsed = _parse_id_and_name(context.args)
-    if parsed is None:
+    args = context.args
+    if not args:
         await update.message.reply_text(i18n.USAGE_ADDADMIN)
         return
-    uid, name = parsed
-    storage.add_user(uid, name, as_admin=True)
-    await update.message.reply_text(i18n.ADMIN_ADDED.format(name=name, user_id=uid))
+
+    try:
+        uid = int(args[0])
+    except ValueError:
+        await update.message.reply_text(i18n.USAGE_ADDADMIN)
+        return
+
+    if len(args) >= 2:
+        name = " ".join(args[1:]).strip()
+        storage.add_user(uid, name, as_admin=True)
+        await update.message.reply_text(i18n.ADMIN_ADDED.format(name=name, user_id=uid))
+        return
+
+    # No name supplied — promote existing user to admin (keeps name + phone).
+    existing = storage.get_user(uid)
+    if existing is None:
+        await update.message.reply_text(i18n.USAGE_ADDADMIN)
+        return
+    storage.add_user(uid, existing["name"], as_admin=True)
+    await update.message.reply_text(
+        i18n.ADMIN_PROMOTED.format(name=existing["name"], user_id=uid)
+    )
 
 
 @_admin_only

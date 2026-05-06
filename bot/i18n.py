@@ -82,7 +82,11 @@ DATELOG_INVALID = "⚠️ ទម្រង់ថ្ងៃមិនត្រឹម
 ADMIN_ONLY = "⛔ ពាក្យបញ្ជានេះសម្រាប់តែអ្នកគ្រប់គ្រងប៉ុណ្ណោះ។"
 USAGE_ADDUSER = "ប្រើប្រាស់៖ /adduser <telegram_id> <ឈ្មោះ>"
 USAGE_REMOVEUSER = "ប្រើប្រាស់៖ /removeuser <telegram_id>"
-USAGE_ADDADMIN = "ប្រើប្រាស់៖ /addadmin <telegram_id> <ឈ្មោះ>"
+USAGE_ADDADMIN = (
+    "ប្រើប្រាស់៖\n"
+    "/addadmin <telegram_id> <ឈ្មោះ> — បន្ថែមអ្នកគ្រប់គ្រងថ្មី\n"
+    "/addadmin <telegram_id> — តម្លើងអ្នកប្រើដែលមានស្រាប់ទៅជាអ្នកគ្រប់គ្រង"
+)
 USAGE_REMOVEADMIN = "ប្រើប្រាស់៖ /removeadmin <telegram_id>"
 USAGE_ADDTRUCK = "ប្រើប្រាស់៖ /addtruck <ផ្លាកលេខ>"
 USAGE_REMOVETRUCK = "ប្រើប្រាស់៖ /removetruck <ផ្លាកលេខ>"
@@ -96,6 +100,7 @@ USER_ADDED = "✅ បានបន្ថែមអ្នកប្រើប្រ�
 USER_REMOVED = "✅ បានដកអ្នកប្រើប្រាស់ {user_id}"
 USER_NOT_FOUND = "⚠️ រកមិនឃើញអ្នកប្រើប្រាស់ {user_id}"
 ADMIN_ADDED = "✅ បានបន្ថែមអ្នកគ្រប់គ្រង {name} ({user_id})"
+ADMIN_PROMOTED = "✅ បានតម្លើង {name} ({user_id}) ទៅជាអ្នកគ្រប់គ្រង"
 ADMIN_DEMOTED = "✅ បានបន្ថយ​អ្នកគ្រប់គ្រង {user_id} ទៅជាអ្នកប្រើប្រាស់"
 ADMIN_NOT_FOUND = "⚠️ រកមិនឃើញអ្នកគ្រប់គ្រង {user_id}"
 LAST_ADMIN_ERROR = "⛔ មិនអាចដកអ្នកគ្រប់គ្រងចុងក្រោយបានទេ។ សូមបន្ថែមអ្នកគ្រប់គ្រងម្នាក់ទៀតមុនសិន។"
