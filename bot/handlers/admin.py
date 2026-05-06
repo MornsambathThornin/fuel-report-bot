@@ -105,6 +105,30 @@ async def listusers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 @_admin_only
+async def listtrucks(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    trucks = storage.load_trucks()
+    out = i18n.LIST_TRUCKS_TITLE.format(count=len(trucks))
+    if trucks:
+        for t in trucks:
+            out += f"  • #{t['no']} — <code>{t['plate']}</code>\n"
+    else:
+        out += i18n.LIST_EMPTY + "\n"
+    await update.message.reply_text(out, parse_mode="HTML")
+
+
+@_admin_only
+async def listvehicletypes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    types = storage.load_vehicle_types()
+    out = i18n.LIST_VEHTYPES_TITLE.format(count=len(types))
+    if types:
+        for t in types:
+            out += f"  • {t}\n"
+    else:
+        out += i18n.LIST_EMPTY + "\n"
+    await update.message.reply_text(out, parse_mode="HTML")
+
+
+@_admin_only
 async def addtruck(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if len(context.args) != 1:
         await update.message.reply_text(i18n.USAGE_ADDTRUCK)
@@ -200,8 +224,10 @@ def register(app) -> None:
     app.add_handler(CommandHandler("listusers", listusers))
     app.add_handler(CommandHandler("addtruck", addtruck))
     app.add_handler(CommandHandler("removetruck", removetruck))
+    app.add_handler(CommandHandler("listtrucks", listtrucks))
     app.add_handler(CommandHandler("addvehicletype", addvehicletype))
     app.add_handler(CommandHandler("removevehicletype", removevehicletype))
+    app.add_handler(CommandHandler("listvehicletypes", listvehicletypes))
     app.add_handler(CommandHandler("setbeginning", setbeginning))
     app.add_handler(CommandHandler("setphone", setphone))
     app.add_handler(CommandHandler("sheet", sheet_link))

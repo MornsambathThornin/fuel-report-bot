@@ -111,6 +111,8 @@ INVALID_NUMBER = "⚠️ ចំនួនមិនត្រឹមត្រូវ�
 
 LIST_USERS_TITLE = "<b>បញ្ជីអ្នកប្រើប្រាស់៖</b>\n"
 LIST_ADMINS_TITLE = "\n<b>បញ្ជីអ្នកគ្រប់គ្រង៖</b>\n"
+LIST_TRUCKS_TITLE = "<b>បញ្ជីឡាន ({count})៖</b>\n"
+LIST_VEHTYPES_TITLE = "<b>បញ្ជីប្រភេទយានយន្ត ({count})៖</b>\n"
 LIST_EMPTY = "  (គ្មាន)"
 
 SHEET_LINK = "🔗 តំណ Google Sheet៖\n{url}"
@@ -133,8 +135,10 @@ HELP_ADMIN = (
     "/listusers — បង្ហាញបញ្ជីអ្នកប្រើប្រាស់\n"
     "/addtruck — បន្ថែមឡាន\n"
     "/removetruck — ដកឡាន\n"
+    "/listtrucks — បង្ហាញបញ្ជីឡាន\n"
     "/addvehicletype — បន្ថែមប្រភេទយានយន្ត\n"
     "/removevehicletype — ដកប្រភេទយានយន្ត\n"
+    "/listvehicletypes — បង្ហាញបញ្ជីប្រភេទយានយន្ត\n"
     "/setbeginning — កំណត់សមតុល្យដើមគ្រា\n"
     "/setphone — កំណត់លេខទូរស័ព្ទអ្នកប្រើ\n"
     "/sheet — ទទួលតំណ Google Sheet"
