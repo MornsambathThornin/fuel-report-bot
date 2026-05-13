@@ -218,6 +218,42 @@ By default, every entry uses today's date. To backdate a session (e.g., catching
 | M | លេខទូរស័ព្ទ | Submitter's phone number |
 | N | ប្រភព | Source / supplier — paying company (Stock In only; empty for Stock Out) |
 
+## Going to production: clean reset
+
+When you're done with development tests and ready to hand the bot to real users, do a clean reset of the Google Sheet so the months start empty with the latest column layout.
+
+### Step 1 — Delete test tabs in the Google Sheet
+
+1. Open the Google Sheet in a browser
+2. At the bottom, right-click each existing month tab (e.g. `ម៉ាស៊ូត Apr 2026`, `ប្រេងសំាង Apr 2026`) → **Delete sheet** → confirm
+3. Keep only the default empty `Sheet1` (or whatever tab Google left behind)
+
+The bot will auto-recreate fresh tabs on the next entry, using the current template (title, headers, formulas, opening row, totals/balance section, all 14 columns).
+
+### Step 2 — Seed the opening balance for the new month
+
+In Telegram, run as admin:
+
+```
+/setbeginning ម៉ាស៊ូត 9045
+/setbeginning ប្រេងសំាង 5000
+```
+
+This writes the opening stock for each fuel type to row 4 of the current month's tab. Pick the actual stock-on-hand numbers for the day you're going live.
+
+### Step 3 (optional) — Reset the user whitelist
+
+If your test data has dummy users you want gone, either:
+- Remove them via bot: `/listusers` to see all entries, then `/removeuser <id>` for each test account
+- Or wipe the Railway Volume entirely → bot recreates defaults from `data_defaults/` and bootstraps your admin from `INITIAL_ADMIN_ID` on next deploy. ⚠️ This also wipes saved phone numbers — anyone using the bot will have to share their contact again.
+
+### Step 4 — Verify
+
+- `/listusers` — should show only real users
+- `/listtrucks` — should show your real fleet
+- Submit one real Stock In and one real Stock Out
+- Open the sheet → fresh month tab with two clean rows and a correct running total
+
 ## Hosting
 
 Local for testing. For 24/7:
