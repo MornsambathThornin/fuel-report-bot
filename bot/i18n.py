@@ -3,8 +3,8 @@
 FUEL_DIESEL = "ម៉ាស៊ូត"
 FUEL_GASOLINE = "ប្រេងសំាង"
 
-OP_IN = "ចូល"
-OP_OUT = "ចេញ"
+OP_IN = "ស្តុកចូល"
+OP_OUT = "ស្តុកចេញ"
 
 BTN_REPORT = "📝 បំពេញរបាយការណ៍"
 BTN_CANCEL = "❌ បោះបង់"
@@ -127,6 +127,7 @@ HELP_USER = (
     "/start — ចាប់ផ្តើម\n"
     "/report — បំពេញរបាយការណ៍ថ្មី\n"
     "/datelog — កំណត់ថ្ងៃសម្រាប់​ការបញ្ចូលរបាយការណ៍\n"
+    "/sheet — ទទួលតំណ Google Sheet\n"
     "/cancel — បោះបង់ការបំពេញ\n"
     "/help — ជំនួយ"
 )
@@ -145,8 +146,7 @@ HELP_ADMIN = (
     "/removevehicletype — ដកប្រភេទយានយន្ត\n"
     "/listvehicletypes — បង្ហាញបញ្ជីប្រភេទយានយន្ត\n"
     "/setbeginning — កំណត់សមតុល្យដើមគ្រា\n"
-    "/setphone — កំណត់លេខទូរស័ព្ទអ្នកប្រើ\n"
-    "/sheet — ទទួលតំណ Google Sheet"
+    "/setphone — កំណត់លេខទូរស័ព្ទអ្នកប្រើ"
 )
 
 

@@ -230,8 +230,14 @@ async def setphone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(i18n.PHONE_SET.format(phone=phone, user_id=uid))
 
 
-@_admin_only
 async def sheet_link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Available to all whitelisted users (not just admins).
+    if not storage.is_user(update.effective_user.id):
+        await update.message.reply_text(
+            i18n.NOT_WHITELISTED.format(user_id=update.effective_user.id),
+            parse_mode="HTML",
+        )
+        return
     await update.message.reply_text(i18n.SHEET_LINK.format(url=sheets.sheet_url()))
 
 

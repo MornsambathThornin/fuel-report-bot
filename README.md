@@ -40,6 +40,7 @@ Do these in order. Steps 1–5 are one-time prep before the bot can start.
    start - ចាប់ផ្តើម
    report - បំពេញរបាយការណ៍
    datelog - កំណត់ថ្ងៃរបាយការណ៍
+   sheet - ទទួលតំណ Google Sheet
    help - ជំនួយ
    cancel - បោះបង់
    ```
@@ -187,10 +188,10 @@ By default, every entry uses today's date. To backdate a session (e.g., catching
 
 ### Sheet
 
-| Command | Purpose |
-|---|---|
-| `/setbeginning <ម៉ាស៊ូត\|ប្រេងសំាង> <amount>` | Set opening balance for current month |
-| `/sheet` | Get the Google Sheet URL |
+| Command | Purpose | Who can use |
+|---|---|---|
+| `/sheet` | Get the Google Sheet URL | **Any whitelisted user** (users + admins) |
+| `/setbeginning <ម៉ាស៊ូត\|ប្រេងសំាង> <amount>` | Set opening balance for current month | Admin only |
 
 ## Sheet behavior
 
